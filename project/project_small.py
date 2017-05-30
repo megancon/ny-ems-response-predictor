@@ -18,6 +18,7 @@ col_values = {}
 le = preprocessing.LabelEncoder()
 enc = preprocessing.OneHotEncoder()
 
+
 enc_data = data.copy()
 # get unique values
 for col in header:
@@ -38,10 +39,10 @@ for col in header:
 
 		col_values[col] = encodings
 
-with open("encodings.json","w") as f:
+with open("encodings_small.json","w") as f:
     json.dump(col_values,f)
 
-enc_data.to_csv('encoded_data.csv')
+enc_data.to_csv('encoded_data_small.csv')
 
 # print col_values
 

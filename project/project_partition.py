@@ -24,12 +24,7 @@ test = leftover.sample(frac=0.5, random_state=1)
 test.to_csv('test.csv')
 validation = leftover.loc[~leftover.index.isin(test.index)]
 validation.to_csv('validation.csv')
-col_values = {}
-# get unique values
-for col in header:
-	col_values[col] = train[col].unique()
 
-pp.pprint(col_values)
 # enc = preprocessing.OneHotEncoder()
 # enc.fit(train)  
 
