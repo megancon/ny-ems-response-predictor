@@ -7,6 +7,8 @@ Plotting Learning Curves
 print(__doc__)
 
 import numpy as np
+import project_partition
+import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
@@ -124,9 +126,9 @@ def plot_learning_curve(estimators, title, X, y, ylim=None, cv=None,
 #nearest neighbor
 #neural nets
 
-digits = load_digits()
-X, y = digits.data, digits.target
-
+data = project_partition.partition_data()
+X = data['validation']
+y = data['test']
 
 title = "Learning Curves"
 # Cross validation with 100 iterations to get smoother mean test and train
