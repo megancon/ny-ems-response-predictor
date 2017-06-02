@@ -7,7 +7,8 @@ Plotting Learning Curves
 print(__doc__)
 
 import numpy as np
-import project_partition
+# import project_partition
+import formatData as fD
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import GaussianNB
@@ -18,6 +19,7 @@ from sklearn.datasets import load_digits
 from sklearn.model_selection import learning_curve
 from sklearn.model_selection import ShuffleSplit
 
+import collections
 
 def plot_learning_curve(estimators, title, X, y, ylim=None, cv=None,
                         n_jobs=1, ts=np.linspace(.1, 1.0, 5)):
@@ -126,9 +128,25 @@ def plot_learning_curve(estimators, title, X, y, ylim=None, cv=None,
 #nearest neighbor
 #neural nets
 
-data = project_partition.partition_data()
-X = data['validation']
-y = data['test']
+# data = project_partition.partition_data()
+# X = data['validation']
+# y = data['test']
+
+
+X,y = fD.csvToArray("/Users/morganwalker/Desktop/Spring 2017/Machine Learning/ny-ems-response-predictor/data/train.csv")
+y = fD.biny(y)
+maximum = max(y)
+minimum = min(y)
+
+# print(X)
+# print(y)
+
+# data = load_digits()
+# X=data.data
+# print("hello")
+# print(type(X))
+# # y=data.target
+# print(y)
 
 title = "Learning Curves"
 # Cross validation with 100 iterations to get smoother mean test and train
@@ -139,8 +157,8 @@ estimators = []
 estimators.append(RandomForestClassifier())
 estimators.append(GaussianNB())
 estimators.append(SVC(gamma=0.001))
-plot_learning_curve(estimators, title, X, y, ylim=(0.7, 1.01), cv=10,  n_jobs=1)
-
+# plot_learning_curve(estimators, title, X, y, ylim=(0.7, 1.01), cv=10,  n_jobs=1)
+plot_learning_curve(estimators, title, X, y, cv=10,  n_jobs=1)
 # title = "Learning Curves (SVM, RBF kernel, $\gamma=0.001$)"
 # # SVC is more expensive so we do a lower number of CV iterations:
 # cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
