@@ -5,6 +5,7 @@ from scipy import stats
 BIN_SIZE = 20
 # 1796
 NUM_EXAMPLES = 559001
+NUM_BINS = 50
 
 def csvToArray(path_to_file):
 	X = []
@@ -22,7 +23,7 @@ def csvToArray(path_to_file):
 			X.append(row[:-1])
 			y.append(row[-1])
 			i += 1
-			if i > 5000:
+			if i > 100000:
 				break
 			if i > NUM_EXAMPLES:
 				break
@@ -51,11 +52,11 @@ def biny(y):
 		y[i-j] = ave
 	return y
 
-def biny2(X,y):
+def biny2(y):
 	new_y = []
 	mini = int(min(y))
 	maxi = int(max(y))
-	range_stops = [i for i in range(mini, maxi, (maxi/15))][1:]
+	range_stops = [i for i in range(mini, maxi, (maxi/NUM_BINS))][1:]
 	ranges = [[] for i in range(0, len(range_stops))]
 	avgs = []
 
@@ -84,8 +85,8 @@ def biny2(X,y):
 			if y[i] < range_stops[j]:
 				y[i] = avgs[j]
 				break
-				
-	return X, y
+
+	return y
 
 
 def shuffle_in_unison(a, b):
@@ -98,7 +99,7 @@ def shuffle_in_unison(a, b):
 
 def getData(path_to_file):
 	X,y = csvToArray(path_to_file)
-	X,y = biny2(X,y)
+	y = biny2(y)
 	X,y = shuffle_in_unison(X,y)
 	return X,y
 
