@@ -7,4 +7,4 @@
 * [Morgan Walker](https://github.com/morgan979)
 * [Jay Valdillez](https://github.com/jvaldillez)
 
-### Our project looks at the EMS Incident Dispatch Data from the New York City Open Data collection and predicts response time of an ambulance dispatched to a location in New York City based on specific attributes.
+### Our project looks at the [EMS Incident Dispatch Data](https://data.cityofnewyork.us/Public-Safety/EMS-Incident-Dispatch-Data/76xm-jjuj) from the New York City Open Data collection and predicts response time of an ambulance dispatched to a location in New York City based on specific attributes.
