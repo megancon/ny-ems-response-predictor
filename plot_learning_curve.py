@@ -181,7 +181,7 @@ estimators = []
 estimators.append(RandomForestClassifier())
 estimators.append(GaussianNB())
 # estimators.append(SVC(gamma=0.001))
-labels = ['Random Forest', 'Gaussian NB']
+labels = ['Random Forest', 'Gaussian NB', 'SVC']
 # plot_learning_curve(estimators, title, X, y, ylim=(0.7, 1.01), cv=10,  n_jobs=1)
 # cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
 plot_learning_curve(estimators, title, labels, X, y, cv=10,  n_jobs=1)
