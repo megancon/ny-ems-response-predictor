@@ -21,7 +21,7 @@ from sklearn.model_selection import ShuffleSplit
 
 import collections
 
-def plot_learning_curve(estimators, title, X, y, ylim=None, cv=None,
+def plot_learning_curve(estimators, title, labels, X, y, ylim=None, cv=None,
                         n_jobs=1, ts=np.linspace(.1, 1.0, 5)):
     """
     Generate a simple plot of the test and training learning curve.
@@ -111,7 +111,7 @@ def plot_learning_curve(estimators, title, X, y, ylim=None, cv=None,
         # plt.plot(train_sizes[j], train_scores_mean[j], 'o-', color="r",
         #         label="Training score")
         plt.plot(train_sizes[j], test_scores_mean[j], 'o-', color=colors[j],
-                label="Cross-validation score")
+                label=labels[j])
 
     
     plt.legend(loc="best")
@@ -133,10 +133,34 @@ def plot_learning_curve(estimators, title, X, y, ylim=None, cv=None,
 # y = data['test']
 
 
-X,y = fD.csvToArray("/Users/morganwalker/Desktop/Spring 2017/Machine Learning/ny-ems-response-predictor/data/train.csv")
+X,y = fD.csvToArray("data/train.csv")
 y = fD.biny(y)
 maximum = max(y)
 minimum = min(y)
+# class data_set:
+
+#     def __init__(self):
+#         header = None
+#         data = None
+#         target = None
+
+# # import some data to play with
+# dataset = pd.read_csv('data/train.csv')
+# data = data_set()
+# data.header = dataset.columns
+# print data.header
+# data.data = dataset[data.header[:17]]
+
+# for col in data.header:
+#     data.data = data.data[~data.data[col].isin(['?'])]
+
+# data.target = data.data['INCIDENT_RESPONSE_SECONDS_QY']
+
+# data.data.pop('INCIDENT_DATETIME')
+# data.data.pop('INCIDENT_RESPONSE_SECONDS_QY')
+# # print data.data
+# X = data.data
+# y = data.target
 
 # print(X)
 # print(y)
@@ -156,9 +180,11 @@ title = "Learning Curves"
 estimators = []
 estimators.append(RandomForestClassifier())
 estimators.append(GaussianNB())
-estimators.append(SVC(gamma=0.001))
+# estimators.append(SVC(gamma=0.001))
+labels = ['Random Forest', 'Gaussian NB']
 # plot_learning_curve(estimators, title, X, y, ylim=(0.7, 1.01), cv=10,  n_jobs=1)
-plot_learning_curve(estimators, title, X, y, cv=10,  n_jobs=1)
+# cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
+plot_learning_curve(estimators, title, labels, X, y, cv=10,  n_jobs=1)
 # title = "Learning Curves (SVM, RBF kernel, $\gamma=0.001$)"
 # # SVC is more expensive so we do a lower number of CV iterations:
 # cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)

@@ -86,6 +86,12 @@ def partition_data(file):
 
 	return {'header':header,'train':train,'test':test, 'validation':validation}
 
+def read_data(file):
+	data = pd.read_csv(file)
+	header = data.columns
+	return {'header':header, 'data':data}
+
+
 file1 = 'data/EECS349_formatted.csv'
 file2 = 'encoded_data.csv'
 
@@ -93,8 +99,8 @@ file2 = 'encoded_data.csv'
 # data = partition_data(file1)
 # partitions = ['train.csv', 'test.csv', 'validation.csv']
 
-train = pd.read_csv('train.csv')
-standardize_dataset(train, 'train')
+# train = pd.read_csv('train.csv')
+# standardize_dataset(train, 'train')
 
 # test = pd.read_csv('test.csv')
 # standardize_dataset(test, 'test')
