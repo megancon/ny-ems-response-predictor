@@ -23,19 +23,19 @@ h5,
 h6 {
   font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
-  margin: 0 0 35px;
+  margin: 0 0 15px;
   letter-spacing: 1px;
   text-transform: uppercase; }
 
 p {
   font-size: 16px;
   line-height: 1.5;
-  margin: 0 0 25px; }
+  margin: 0 0 15px; }
   @media (min-width: 768px) {
     p {
       font-size: 18px;
       line-height: 1.6;
-      margin: 0 0 35px; } }
+      margin: 0 0 15px; } }
 
 a {
   -webkit-transition: all .2s ease-in-out;
@@ -145,12 +145,20 @@ a {
   width: 100%;
   padding: 50px 0;
   color: white;
-  background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
-  background-color: black;
+  /*background: url(../img/downloads-bg.jpg) no-repeat center center scroll;*/
+  background-color: gray;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover; }
+
+td{
+  text-align: left;
+  padding-left: 20px;
+}
+th{
+  padding-left: 20px;
+}
 
 #map {
   width: 100%;
