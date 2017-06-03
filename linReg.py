@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LinearRegression
 from sklearn.datasets import load_digits
 from sklearn.model_selection import learning_curve
+import formatData as fD
 
 def linReg(features,labels):
 	lr = LinearRegression()
@@ -15,8 +16,7 @@ def linReg(features,labels):
 	plt.scatter(features,labels)
 	plot.show
 
-
-digits = load_digits()
-features, labels = digits.data, digits.target
+X, y = fD.csvToArray('data/train.csv')
+features, labels = X, y
 
 linReg(features,labels)

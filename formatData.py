@@ -1,5 +1,6 @@
 import numpy as np
 import collections
+from scipy import stats
 
 BIN_SIZE = 20
 # 1796
@@ -16,17 +17,16 @@ def csvToArray(path_to_file):
 		row = [x.rstrip() for x in row.split(',')]
 		del row[:2]
 		# row = [0 if x == '?' for x in row]
-		row = [0 if x == '?' else int(x) for x in row]
-		X.append(row[:-1])
-		y.append(row[-1])
-		# print(X)
-		# print(y)
-		i += 1
-		if i > 3000:
-			break
-		if i > NUM_EXAMPLES:
-			break
-	X = [x for (y,x) in sorted(zip(y,X))]
+		if '?' not in row:
+			row = [int(x) for x in row]
+			X.append(row[:-1])
+			y.append(row[-1])
+			i += 1
+			if i > 5000:
+				break
+			if i > NUM_EXAMPLES:
+				break
+	X = [x for (Y,x) in sorted(zip(y,X))]
 	y = sorted(y)
 	return np.asarray(X),np.asarray(y)
 
@@ -51,34 +51,41 @@ def biny(y):
 		y[i-j] = ave
 	return y
 
-def biny2(y):
+def biny2(X,y):
 	new_y = []
-	ave = 0
-	mini = min(y)
-	maxi = max(y)
-	range_stops = [i in range(mini, maxi + 1, (maxi/BIN_SIZE))]
-	ranges = []
-	for i in len(range_stops):
-		if i == 0:
-			pass
-		ranges.append((range_stops[i-1],range_stops[i]))
+	mini = int(min(y))
+	maxi = int(max(y))
+	range_stops = [i for i in range(mini, maxi, (maxi/15))][1:]
+	ranges = [[] for i in range(0, len(range_stops))]
+	avgs = []
 
-	for j in range(len(y)):
-		ave += y[i]
-		for x
-		counter += 1
-		if counter == BIN_SIZE:
-			# calculate the average
-			ave = ave/BIN_SIZE
-			# update all of the past 10 elements to equal the average
-			for j in range(BIN_SIZE):
-				y[i-j] = ave
-			# reset counter and average
-			counter = 0
-			ave = 0
-	for j in range(BIN_SIZE):
-		y[i-j] = ave
-	return y
+	for i in y:
+		for j in range(len(ranges)):
+			if i < range_stops[j]:
+				ranges[j].append(i)
+				break
+
+	d = {}
+	for i in range(len(range_stops)):
+		d[range_stops[i]] = ranges[i]
+
+	for k in d.keys():
+		if len(d[k]) < 2:
+			index = range_stops.index(k)
+			del ranges[index]
+			del range_stops[index]
+			del d[k]
+
+	for vec in d.values():
+		avgs.append(sum(vec)/len(vec))
+
+	for i in range(len(y)):
+		for j in range(len(ranges)):
+			if y[i] < range_stops[j]:
+				y[i] = avgs[j]
+				break
+				
+	return X, y
 
 
 def shuffle_in_unison(a, b):
@@ -86,13 +93,16 @@ def shuffle_in_unison(a, b):
 	np.random.shuffle(a)
 	np.random.set_state(rng_state)
 	np.random.shuffle(b)
+	
 	return a,b
 
 def getData(path_to_file):
 	X,y = csvToArray(path_to_file)
-	y = biny(y)
+	X,y = biny2(X,y)
 	X,y = shuffle_in_unison(X,y)
 	return X,y
+
+# print getData('data/train.csv')
 
 
 # a = np.array([[[  0.,   1.,   2.],

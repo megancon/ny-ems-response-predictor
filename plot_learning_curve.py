@@ -137,38 +137,6 @@ def plot_learning_curve(estimators, estimator_names, title, X, y, ylim=None, cv=
 # y = data['test']
 
 
-X,y = fD.csvToArray("data/train.csv")
-y = fD.biny(y)
-maximum = max(y)
-minimum = min(y)
-# class data_set:
-
-#     def __init__(self):
-#         header = None
-#         data = None
-#         target = None
-
-# # import some data to play with
-# dataset = pd.read_csv('data/train.csv')
-# data = data_set()
-# data.header = dataset.columns
-# print data.header
-# data.data = dataset[data.header[:17]]
-
-# for col in data.header:
-#     data.data = data.data[~data.data[col].isin(['?'])]
-
-# data.target = data.data['INCIDENT_RESPONSE_SECONDS_QY']
-
-# data.data.pop('INCIDENT_DATETIME')
-# data.data.pop('INCIDENT_RESPONSE_SECONDS_QY')
-# # print data.data
-# X = data.data
-# y = data.target
-# X,y = fD.csvToArray("/Users/morganwalker/Desktop/Spring 2017/Machine Learning/ny-ems-response-predictor/data/train.csv")
-# y = fD.biny(y)
-# maximum = max(y)
-# minimum = min(y)
 X,y = fD.getData("data/train.csv")
 
 # print(X)
@@ -195,7 +163,7 @@ estimators.append(LinearRegression(fit_intercept=True, normalize=False, copy_X=T
 estimators.append(AdaBoostClassifier(base_estimator=None, n_estimators=50, learning_rate=1.0, algorithm='SAMME.R', random_state=None))
 estimator_names = ["Random Forest","Gaussian Naive Bayes","Support Vector Machine","Multi-Layer Perceptron","Linear Regression","AdaBoost"]
 # plot_learning_curve(estimators, title, X, y, ylim=(0.7, 1.01), cv=10,  n_jobs=1)
-plot_learning_curve(estimators, estimator_names, title, X, y, cv=10,  n_jobs=1)
+plot_learning_curve(estimators, estimator_names, title, X, y, ylim=(0.0, 1.01), cv=10,  n_jobs=1)
 
 # title = "Learning Curves (SVM, RBF kernel, $\gamma=0.001$)"
 # # SVC is more expensive so we do a lower number of CV iterations:
