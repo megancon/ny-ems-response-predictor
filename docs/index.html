@@ -168,17 +168,18 @@
             <div class="col-lg-8 offset-md-2">
                 <h2>Results</h2>
                 <p>The learning curves show that using fixed time intervals corresponding to each bin was a much more successful strategy than using a fixed number of examples to create each bin. With the fixed number of bins, we found that the number of bins also affected the accuracy of the models. Overall, a smaller number of bins was more accurate because there were fewer options for classifying the data, so the likelihood of selecting the correct bin was higher. Using a smaller number of bins, however, is less informative about the response time because each bin has a larger range of time for the response times.</p>
-                <p>Training and 10-fold Cross Validation for 30 bins determined by time:</p>
+                <p>Training and 10-fold Cross Validation for 30 response time intervals:</p>
                 <div id="learning_curves"><img src="img/training10000ex30bins.png"><img src="img/cv10000ex30bins.png"></div>
-                <p>Training and 10-fold Cross Validation for 50 bins determined by time:</p>
+                <p>Training and 10-fold Cross Validation for 50 response time intervals:</p>
                 <div id="learning_curves"><img src="img/training10000ex50bins.png"><img src="img/cv10000ex50bins.png"></div>
+                <p>We successfully calculated the average EMS response times for each zip code. We could not find very reliable and consistent data for all of the average household incomes for each zip code.  However with the information we did find, when looking at the zip codes with the fastest average response times compared to the slowest, we could not draw any conclusions between the average income and the response time. In the future, we could look into other social observations that may contribute to slower response times in certain areas.</p>
                 <div id="result_buttons">
                 <ul class="list-inline banner-social-buttons">
                     <li class="list-inline-item">
                         <a href="https://github.com/megancon/ny-ems-response-predictor" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="final_report.pdf" class="btn btn-default btn-lg"><span class="network-name">Final Report</span></a>
+                        <a href="FinalReport.pdf" class="btn btn-default btn-lg"><span class="network-name">Final Report</span></a>
                     </li>
                 </ul>
                 </div>
