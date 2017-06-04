@@ -2,10 +2,10 @@ import numpy as np
 import collections
 from scipy import stats
 
-BIN_SIZE = 20
+BIN_SIZE = 333
 # 1796
-NUM_EXAMPLES = 559001
-NUM_BINS = 50
+NUM_EXAMPLES = 5000
+NUM_BINS = 15
 
 def csvToArray(path_to_file):
 	X = []
@@ -23,8 +23,6 @@ def csvToArray(path_to_file):
 			X.append(row[:-1])
 			y.append(row[-1])
 			i += 1
-			if i > 100000:
-				break
 			if i > NUM_EXAMPLES:
 				break
 	X = [x for (Y,x) in sorted(zip(y,X))]
@@ -99,7 +97,7 @@ def shuffle_in_unison(a, b):
 
 def getData(path_to_file):
 	X,y = csvToArray(path_to_file)
-	y = biny2(y)
+	y = biny(y)
 	X,y = shuffle_in_unison(X,y)
 	return X,y
 
