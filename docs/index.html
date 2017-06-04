@@ -156,7 +156,7 @@
                     </table>
                     </p>
                     <p>
-                    We were interested in how well we could predict a response time by using continuous labels vs. discretized labels. Our original dataset has a specific response time for each example, which we used for our continuous label analysis. From our dataset of continuous labels we employed two methods to bin the data to make discretized EMS response time labels. Our first method separates the data by making sure that each bin has the same number of examples. As a result, the range of response time varies for each bin. Our other method separated the bins by doing equal intervals of response times, so each bin had a varied number of examples in them. 
+                    We were interested in how well we could predict a response time by using continuous labels vs. discretized labels. Our original dataset has a specific response time for each example, which we used for our continuous label analysis. From our dataset of continuous labels we employed two methods to bin the data to make discretized EMS response time labels. Our first method separated the data by making sure that each bin has the same number of examples. As a result, the range of response time varies for each bin. Our other method separated the bins by doing equal intervals of response times, so each bin had a varied number of examples in them. 
                     </p>
                     <p>
                     We were also interested in how smaller datasets performed in comparison to larger datasets. We felt as though this would be useful if a city wanted to analyze a smaller area within a city or only had a small amount of data available. In order to note the differences between the dataset sizes we trained and tested using 10-fold cross validation on Random Forest, Gaussian Naive Bayes, Support Vector Machine, Multi-Layer Perceptron, Linear Regression, and AdaBoost classifiers and plotted the corresponding learning curves using the Scikit python package. 
@@ -171,7 +171,13 @@
         <div class="row">
             <div class="col-lg-8 offset-md-2">
                 <h2>Results</h2>
-                <p>hehehhehehheheh</p>
+                <p>The learning curves show that using a fixed number of bins was a much more successful strategy than using a fixed number of examples per bin. This is because when the number of bins doesn't change, the data doesn't shift between bins depending on the subsequent examples.</p>
+                <p>With the fixed number of bins, we found that the number of bins also affected the accuracy of the models. Overall, a smaller number of bins was more accurate because there were fewer options for classifying the data, so the likelihood of selecting the correct bin was higher. Using a smaller number of bins is less informative about the response time because each bin has a larger range of time for the response times.</p>
+                <p>Training and 10-fold Cross Validation for 30 bins determined by time:</p>
+                <div id="learning_curves"><img src="img/training10000ex30bins.png"><img src="img/cv10000ex30bins.png"></div>
+                <p>Training and 10-fold Cross Validation for 50 bins determined by time:</p>
+                <div id="learning_curves"><img src="img/training10000ex50bins.png"><img src="img/cv10000ex50bins.png"></div>
+                <div id="result_buttons">
                 <ul class="list-inline banner-social-buttons">
                     <li class="list-inline-item">
                         <a href="https://github.com/megancon/ny-ems-response-predictor" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
@@ -180,6 +186,7 @@
                         <a href="final_report.pdf" class="btn btn-default btn-lg"><span class="network-name">Final Report</span></a>
                     </li>
                 </ul>
+                </div>
             </div>
         </div>
     </section>
