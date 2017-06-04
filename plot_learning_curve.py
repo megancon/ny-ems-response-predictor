@@ -104,17 +104,17 @@ def plot_learning_curve(estimators, estimator_names, title, X, y, ylim=None, cv=
 
     for j in range(est_len):
 
-        # plt.fill_between(train_sizes[j], train_scores_mean[j] - train_scores_std[j],
-        #                 train_scores_mean[j] + train_scores_std[j], alpha=0.1,
-        #                 color=colors[j])
-        plt.fill_between(train_sizes[j], test_scores_mean[j] - test_scores_std[j],
-                    test_scores_mean[j] + test_scores_std[j], alpha=0.1, color=colors[j])
+        plt.fill_between(train_sizes[j], train_scores_mean[j] - train_scores_std[j],
+                        train_scores_mean[j] + train_scores_std[j], alpha=0.1,
+                        color=colors[j])
+        # plt.fill_between(train_sizes[j], test_scores_mean[j] - test_scores_std[j],
+        #             test_scores_mean[j] + test_scores_std[j], alpha=0.1, color=colors[j])
 
 
-        # plt.plot(train_sizes[j], train_scores_mean[j], 'o-', color="r",
-        #         label="Training score")
-        plt.plot(train_sizes[j], test_scores_mean[j], 'o-', color=colors[j],
-                label=estimator_names[j])
+        plt.plot(train_sizes[j], train_scores_mean[j], 'o-', color="r",
+                label="Training score")
+        # plt.plot(train_sizes[j], test_scores_mean[j], 'o-', color=colors[j],
+        #         label=estimator_names[j])
 
     
     plt.legend(loc="best")

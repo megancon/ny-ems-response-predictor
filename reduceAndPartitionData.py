@@ -14,7 +14,8 @@ def csvToArray(path_to_file):
 	row1 = data[0]
 	headers = [x.rstrip() for x in row1.split(',')] 
 	headers = headers [2:]
-	data = data[1:]
+	zip_data = data[9]
+	response_data
 	i = 0
 	for row in data:
 		row = [x.rstrip() for x in row.split(',')]
