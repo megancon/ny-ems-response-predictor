@@ -166,6 +166,7 @@ th{
 #learning_curves {
   display: inline-block;
   margin: 0px;
+  padding-bottom: 10px;
 }
 #learning_curves img{
   border-radius: 10%;
